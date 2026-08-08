@@ -1,5 +1,12 @@
 class Solution(object):
     def isAnagram(self, s, t):
-        s_sorted=sorted(s)
-        t_sorted=sorted(t)
-        return s_sorted == t_sorted
+        mapping=[0]*26
+
+        for ch in s:
+            index = ord(ch)-97
+            mapping[index]+= 1
+
+        for ch in t:
+            index = ord(ch)-97
+            mapping[index]-= 1
+        return all(m==0 for m in mapping)
